@@ -8,7 +8,7 @@ const port = 3000;
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
-  database: "Permalist",
+  database: "permalist",
   password: "DBpass123",
   port: 5432,
 });
@@ -37,15 +37,36 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/add", async (req, res) => {
-  
+  const item = req.body.newItem;
+  // items.push({title: item});
+  try {
+    await db.query("INSERT INTO items (title) VALUES ($1)", [item]);
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.post("/edit", async (req, res) => {
-  
+  const item = req.body.updatedItemTitle;
+  const id = req.body.updatedItemId;
+
+  try {
+    await db.query("UPDATE items SET title = ($1) WHERE id = $2", [item, id]);
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.post("/delete", async (req, res) => {
-  
+  const id = req.body.deleteItemId;
+  try {
+    await db.query("DELETE FROM items WHERE id = $1", [id]);
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.listen(port, () => {
