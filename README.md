@@ -59,9 +59,9 @@ Permalist is a Node.js application that lets users create, view, and delete item
 ---
 
 ## 📚 Tech Stack
-- **Backend**: Node.js, Express.js
-- **Frontend**: HTML, CSS, EJS
-- **Database**: PostgreSQL
+- **Backend**: Node.js, Express.js.
+- **Frontend**: HTML, CSS, EJS.
+- **Database**: PostgreSQL.
 
 ## 🚀 How to Run the Project
 1. Clone the repository:
